@@ -1,0 +1,127 @@
+@import url('@fontsource/inter/400.css');
+@import url('@fontsource/inter/500.css');
+@import url('@fontsource/inter/600.css');
+@import url('@fontsource/inter/700.css');
+@import url('@fontsource/inter/800.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ZeroSearch — Clean, privacy-first design system
+   Light theme, blue accent. All colors HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 25% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 25% 12%;
+
+    /* Primary: vivid blue (ZeroSearch) */
+    --primary: 222 89% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-soft: 222 100% 96%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 222 25% 12%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 142 71% 45%; /* status green */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 222 89% 55%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 25% 12%;
+    --sidebar-primary: 222 89% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent-foreground: 222 25% 12%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 222 89% 55%;
+
+    /* Custom tokens */
+    --shadow-soft: 0 1px 2px hsl(222 25% 12% / 0.04), 0 4px 12px hsl(222 25% 12% / 0.04);
+    --shadow-elevated: 0 4px 12px hsl(222 25% 12% / 0.06), 0 12px 40px hsl(222 25% 12% / 0.08);
+    --shadow-glow: 0 8px 30px hsl(222 89% 55% / 0.18);
+    --gradient-primary: linear-gradient(135deg, hsl(222 89% 55%), hsl(222 89% 65%));
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.4);
+  }
+}
+
+@layer components {
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+
+  /* Subtle status pulse */
+  @keyframes status-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .status-pulse {
+    animation: status-pulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up {
+    animation: fade-up 0.4s ease-out both;
+  }
+}
